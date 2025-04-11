@@ -2,7 +2,7 @@ import { create } from 'zustand'
 
 type Store = {
   count: number
-  message: string
+  message: string[]
   isDuck: boolean
   // 新增用户偏好设置
   preferences: {
@@ -15,7 +15,7 @@ type Store = {
   reduce: () => void
 
   // message操作方法
-  setMessage: (msg: string) => void
+  addTodo: (todo: string) => void
 
   // isDuck操作方法
   toggleTheme: () => void
@@ -37,15 +37,10 @@ export const useStore = create<Store>((set) => ({
   reduce: () => set((state) => ({ count: state.count - 1 })),//减法器
 
   // 消息更新
-  setMessage: (msg) => set({ message: msg }),
+  addTodo: (todo: string) => set((state) => ({ todos: [...state.todos, todo] })),
   
   // 主题切换
-  toggleTheme: () => set((state) => ({
-    preferences: {
-      ...state.preferences,
-      theme: state.preferences.theme === 'light' ? 'dark' : 'light'
-    }
-  })),
+  toggleTheme: () => set((state) => ({ isDark: !state.isDark })),
 
   toggleNotifications: () => set((state) => ({
     preferences: {
