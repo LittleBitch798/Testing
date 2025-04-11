@@ -26,21 +26,26 @@ type Store = {
 
 export const useStore = create<Store>((set) => ({
   count: 0,
-  message: '',
+  message: [], // 修复类型不匹配
   isDuck: false,
   preferences: {
     theme: 'light',
     notifications: true
   },
 
-  increment: () => set((state) => ({ count: state.count + 1 })),//加法器
-  reduce: () => set((state) => ({ count: state.count - 1 })),//减法器
+  increment: () => set((state) => ({ count: state.count + 1 })), // 加法器
+  reduce: () => set((state) => ({ count: state.count - 1 })), // 减法器
 
   // 消息更新
-  addTodo: (todo: string) => set((state) => ({ todos: [...state.todos, todo] })),
+  addTodo: (todo: string) => set((state) => ({ message: [...state.message, todo] })), // 修复属性名错误
   
   // 主题切换
-  toggleTheme: () => set((state) => ({ isDark: !state.isDark })),
+  toggleTheme: () => set((state) => ({
+    preferences: {
+      ...state.preferences,
+      theme: state.preferences.theme === 'light' ? 'dark' : 'light'
+    }
+  })), // 修复属性名错误
 
   toggleNotifications: () => set((state) => ({
     preferences: {
