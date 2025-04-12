@@ -18,6 +18,9 @@ type Store = {
   addTodo: (todo: string) => void
 
   // isDuck操作方法
+  toggleDuck: () => void
+
+
   toggleTheme: () => void
 
   // preferences操作方法
@@ -27,7 +30,7 @@ type Store = {
 export const useStore = create<Store>((set) => ({
   count: 0,
   message: [], // 修复类型不匹配
-  isDuck: false,
+  isDuck: true,
   preferences: {
     theme: 'light',
     notifications: true
@@ -40,6 +43,9 @@ export const useStore = create<Store>((set) => ({
   addTodo: (todo: string) => set((state) => ({ message: [...state.message, todo] })), // 修复属性名错误
   
   // 主题切换
+  toggleDuck: () => set((state) => ({ isDuck: !state.isDuck })), // 修复属性名错误
+
+
   toggleTheme: () => set((state) => ({
     preferences: {
       ...state.preferences,
