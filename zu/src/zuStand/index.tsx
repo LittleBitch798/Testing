@@ -1,62 +1,68 @@
-import { create } from 'zustand'
+import { create } from 'zustand';
 
 type Store = {
-  count: number
-  message: string[]
-  isDuck: boolean
-  // 新增用户偏好设置
-  preferences: {
-    theme: 'light' | 'dark'
-    notifications: boolean
-  }
-  
-  // count操作方法
-  increment: () => void
-  reduce: () => void
+    count: number;
+    message: string[];
+    isDuck: boolean;
+    // 新增用户偏好设置
+    preferences: {
+        theme: 'light' | 'dark';
+        notifications: boolean;
+    };
+    //wz
+    binaryMode: boolean;
+    isTextBold: boolean;
+    toggleBinaryMode: () => void;
+    toggleTextBold: () => void;
+    // count 操作方法
+    increment: () => void;
+    reduce: () => void;
 
-  // message操作方法
-  addTodo: (todo: string) => void
+    // message 操作方法
+    addTodo: (todo: string) => void;
 
-  // isDuck操作方法
-  toggleDuck: () => void
+    // isDuck 操作方法
+    toggleDuck: () => void;
 
+    toggleTheme: () => void;
 
-  toggleTheme: () => void
-
-  // preferences操作方法
-  toggleNotifications: () => void
-}
+    // preferences 操作方法
+    toggleNotifications: () => void;
+};
 
 export const useStore = create<Store>((set) => ({
-  count: 0,
-  message: [], // 修复类型不匹配
-  isDuck: true,
-  preferences: {
-    theme: 'light',
-    notifications: true
-  },
-
-  increment: () => set((state) => ({ count: state.count + 1 })), // 加法器
-  reduce: () => set((state) => ({ count: state.count - 1 })), // 减法器
-
-  // 消息更新
-  addTodo: (todo: string) => set((state) => ({ message: [...state.message, todo] })), // 修复属性名错误
-  
-  // 主题切换
-  toggleDuck: () => set((state) => ({ isDuck: !state.isDuck })), // 修复属性名错误
-
-
-  toggleTheme: () => set((state) => ({
+    count: 0,
+    message: [],
+    isDuck: true,
     preferences: {
-      ...state.preferences,
-      theme: state.preferences.theme === 'light' ? 'dark' : 'light'
-    }
-  })), // 修复属性名错误
+        theme: 'light',
+        notifications: true,
+    },
+    binaryMode: false,
+    isTextBold: false,
+    toggleBinaryMode: () => set((state) => ({ binaryMode:!state.binaryMode })),
+    toggleTextBold: () => set((state) => ({ isTextBold:!state.isTextBold })),
+    
+    increment: () => set((state) => ({ count: state.count + 1 })),
+    reduce: () => set((state) => ({ count: state.count - 1 })),
 
-  toggleNotifications: () => set((state) => ({
-    preferences: {
-      ...state.preferences,
-      notifications: !state.preferences.notifications
-    }
-  }))
-}))
+    // 消息更新
+    addTodo: (todo: string) => set((state) => ({ message: [...state.message, todo] })),
+
+    // 主题切换
+    toggleDuck: () => set((state) => ({ isDuck:!state.isDuck })),
+
+    toggleTheme: () => set((state) => ({
+        preferences: {
+            ...state.preferences,
+            theme: state.preferences.theme === 'light'? 'dark' : 'light',
+        },
+    })),
+
+    toggleNotifications: () => set((state) => ({
+        preferences: {
+            ...state.preferences,
+            notifications:!state.preferences.notifications,
+        },
+    })),
+}));    
