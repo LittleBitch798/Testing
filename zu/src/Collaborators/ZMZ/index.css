@@ -1,0 +1,87 @@
+.conter-contain{
+    padding: 24px;
+    margin: 16px 0;
+    border-radius: 8px;
+    border:none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.counter-button {
+    padding: 10px 20px;
+    margin:18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.counter-button:hover {
+    transform: translateY(-2px);
+  }
+
+.decrement-button{
+    background-color: crimson;
+    color: white;
+}
+.increment-button {
+    background-color: #60a5fa;
+    color: white;
+  }
+
+  /* 输入组件样式 */
+.input-container {
+    padding: 24px;
+    margin: 16px 0;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+  
+  .input-field {
+    padding: 12px;
+    width: 100%;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 12px;
+    transition: border-color 0.3s;
+  }
+  
+  .input-field:focus {
+    outline: none;
+    border-color: #4f46e5;
+  }
+  
+  .input-text {
+    font-size: 14px;
+    color: #64748b;
+    margin: 8px 0 0;
+  }
+  
+  /* 显示组件样式 */
+  .display-container {
+    padding: 24px;
+    margin: 16px 0;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+  
+  .display-content {
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: #1e293b;
+  }
+  
+  .change-color-btn {
+    padding: 12px 24px;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .change-color-btn:hover {
+    background-color: #4338ca;
+  }
+  
