@@ -2,7 +2,7 @@ import { create } from 'zustand'
 
 type Store = {
   count: number
-  message: string
+  message: string[]
   isDuck: boolean
   // 新增用户偏好设置
   preferences: {
@@ -15,9 +15,12 @@ type Store = {
   reduce: () => void
 
   // message操作方法
-  setMessage: (msg: string) => void
+  addTodo: (todo: string) => void
 
   // isDuck操作方法
+  toggleDuck: () => void
+
+
   toggleTheme: () => void
 
   // preferences操作方法
@@ -26,26 +29,29 @@ type Store = {
 
 export const useStore = create<Store>((set) => ({
   count: 0,
-  message: '',
-  isDuck: false,
+  message: [], // 修复类型不匹配
+  isDuck: true,
   preferences: {
     theme: 'light',
     notifications: true
   },
 
-  increment: () => set((state) => ({ count: state.count + 1 })),//加法器
-  reduce: () => set((state) => ({ count: state.count - 1 })),//减法器
+  increment: () => set((state) => ({ count: state.count + 1 })), // 加法器
+  reduce: () => set((state) => ({ count: state.count - 1 })), // 减法器
 
   // 消息更新
-  setMessage: (msg) => set({ message: msg }),
+  addTodo: (todo: string) => set((state) => ({ message: [...state.message, todo] })), // 修复属性名错误
   
   // 主题切换
+  toggleDuck: () => set((state) => ({ isDuck: !state.isDuck })), // 修复属性名错误
+
+
   toggleTheme: () => set((state) => ({
     preferences: {
       ...state.preferences,
       theme: state.preferences.theme === 'light' ? 'dark' : 'light'
     }
-  })),
+  })), // 修复属性名错误
 
   toggleNotifications: () => set((state) => ({
     preferences: {
