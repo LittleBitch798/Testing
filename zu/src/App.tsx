@@ -1,7 +1,8 @@
 import { useStore } from './zuStand';
-import HLS from './Collaborators/HLS/index';
-import WXH from './Collaborators/WXH/index';
-import WZ from './Collaborators/WZ';
+// import HLS from './Collaborators/HLS/index';
+// import WXH from './Collaborators/WXH/index';
+// import WZ from './Collaborators/WZ';
+import Tpp from './Collaborators/QYH';
 import React, { useEffect } from'react';
 
 function App() {
@@ -15,9 +16,10 @@ function App() {
     return (
         <>
             <div className={`fixed top-0 left-0 w-screen h-screen ${theme === 'dark'? 'bg-gray-800' : 'bg-gray-50'}`}>
-                <HLS />
+                {/* <HLS />
                 <WXH />
-                <WZ />
+                <WZ /> */}
+                <Tpp />
             </div>
         </>
     );
